@@ -25,5 +25,5 @@ Auth::routes([
     'confirm' => false,
 ]);
 
-Route::get('/home', [App\Http\Controllers\OrderController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\OrderController::class, 'index'])->name('home');
 Route::resource('/dishes',App\Http\Controllers\DishController::class);
