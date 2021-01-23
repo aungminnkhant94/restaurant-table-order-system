@@ -15,9 +15,8 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[App\Http\Controllers\OrderController::class,'index'])->name('order.form');
+Route::post('/submit',[App\Http\Controllers\OrderController::class,'submit'])->name('order.submit');
 
 Auth::routes([
     'reset' => false ,
@@ -27,3 +26,4 @@ Auth::routes([
 
 //Route::get('/home', [App\Http\Controllers\OrderController::class, 'index'])->name('home');
 Route::resource('/dishes',App\Http\Controllers\DishController::class);
+
