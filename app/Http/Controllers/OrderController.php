@@ -6,6 +6,7 @@ use App\Models\Dish;
 use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\Request;
+use App\Http\Controllers\OrderController;
 
 class OrderController extends Controller
 {
@@ -19,7 +20,10 @@ class OrderController extends Controller
     {
         $dishes = Dish::orderBy('id','desc')->get();
         $tables = Table::orderBy('id','desc')->get();
-        return view('order_form',compact('dishes','tables'));
+        $statusArray = config('res.order_status');
+        $status = array_flip($statusArray); 
+        $orders = Order::where('status',4)->get();
+        return view('order_form',compact('dishes','tables','status','orders'));
     }
 
     public function submit(Request $request)
@@ -50,5 +54,13 @@ class OrderController extends Controller
         $order->status = config('res.order_status.new');
 
         $order->save();
+    }
+
+    public function serve(Order $order)
+    {
+        $order->status = config('res.order_status.done');
+
+        $order->save();
+        return redirect('/')->with('message','Order done served to Customer');
     }
 }

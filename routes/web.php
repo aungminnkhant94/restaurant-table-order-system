@@ -26,4 +26,9 @@ Auth::routes([
 
 //Route::get('/home', [App\Http\Controllers\OrderController::class, 'index'])->name('home');
 Route::resource('/dishes',App\Http\Controllers\DishController::class);
+Route::get('/orders',[App\Http\Controllers\DishController::class,'order'])->name('kitchen.order');
+Route::get('/orders/{order}/approve',[App\Http\Controllers\DishController::class,'approve'])->name('kitchen.approve');
+Route::get('/orders/{order}/cancel',[App\Http\Controllers\DishController::class,'cancel'])->name('kitchen.cancel');
+Route::get('/orders/{order}/ready',[App\Http\Controllers\DishController::class,'ready'])->name('kitchen.ready');
+Route::get('/orders/{order}/serve',[App\Http\Controllers\OrderController::class,'serve'])->name('kitchen.serve');
 

@@ -68,7 +68,32 @@
                            </form>
                         </div>
                         <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                           Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam. 
+                           <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                              <th>Dish Name</th>
+                              <th>Table Number</th>
+                              <th>Status</th>
+                              <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($orders as $order)
+                            <tr>
+                              <td>{{ $order->dish->name }}</td>
+                              <td>{{ $order->table_id}}</td>
+                              <td>{{ $status[$order->status]}}</td>
+                              <td>
+                              <div class="">
+                                <a href="/orders/{{ $order->id }}/serve"class="btn btn-info">Serve</a>
+                                <a href="/orders/{{ $order->id }}/cancel"class="btn btn-warning">Cancel</a>
+                                <a href="/orders/{{ $order->id }}/ready"class="btn btn-success">Ready</a>
+                              </div>
+                              </td>
+                            </tr>
+                            @endforeach
+                            </tbody>  
+                           </table>
                         </div>
                       </div>
                     </div>

@@ -64,13 +64,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('/dishes') }}" class="nav-link active">
+                <a href="{{ url('/dishes') }}" class="nav-link {{ Request::segment(1) == 'dishes' ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dishes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ url('/orders') }}" class="nav-link">
+                <a href="{{ url('/orders') }}" class="nav-link {{ Request::segment(1) == 'orders' ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Orders</p>
                 </a>
